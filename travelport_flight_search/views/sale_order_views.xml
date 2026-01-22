@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_order_form_inherit_travelport" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.travelport</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_preview_sale_order']" position="after">
+                <button name="action_open_flight_search_wizard" string="Search Flights" type="object" class="btn-secondary" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

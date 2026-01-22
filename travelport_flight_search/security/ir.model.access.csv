@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_travelport_flight_search_wizard_user,travelport.flight.search.wizard.user,model_travelport_flight_search_wizard,base.group_user,1,1,1,1
+access_travelport_flight_offer_user,travelport.flight.offer.user,model_travelport_flight_offer,base.group_user,1,1,1,1

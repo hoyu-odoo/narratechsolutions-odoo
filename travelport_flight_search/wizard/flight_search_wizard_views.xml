@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_flight_offer_tree" model="ir.ui.view">
+        <field name="name">travelport.flight.offer.tree</field>
+        <field name="model">travelport.flight.offer</field>
+        <field name="arch" type="xml">
+            <list string="Available Flights" editable="bottom">
+                <field name="selected" widget="boolean_toggle"/>
+                <field name="flight_summary" readonly="1"/>
+                <field name="price" />
+                <field name="currency"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Flight Search Wizard Form View -->
+    <record id="view_flight_search_wizard_form" model="ir.ui.view">
+        <field name="name">travelport.flight.search.wizard.form</field>
+        <field name="model">travelport.flight.search.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Search Flights">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="sale_order_id" invisible="1"/>
+                            <field name="origin" />
+                            <field name="destination" />
+                            <field name="departure_date"/>
+                            <field name="is_round_trip"/>
+                            <field name="return_date" invisible="not is_round_trip"/>
+                        </group>
+                        <group>
+                            <field name="passenger_adult_count"/>
+                            <field name="passenger_child_count"/>
+                            <field name="passenger_child_ages" invisible="passenger_child_count == 0"/>
+                            <field name="cabin_class"/>
+                        </group>
+                    </group>
+                    <group string="Flight Offers" invisible="not has_results">
+                        <field name="flight_offers" nolabel="1"
+                               context="{'default_wizard_id': id}"
+                               options="{'no_create': True, 'no_create_edit': True}"/>
+                    </group>
+                </sheet>
+                <footer>
+                    <button name="action_search_flights" string="Search Flights" type="object" class="btn-primary" invisible="has_results"/>
+                    <button name="action_add_selected_offers" string="Add Selected Offers" type="object" class="btn-primary" invisible="not has_results" context="{'get_selected_offers': True}"/>
+                    <button name="action_search_flights" string="New Search" type="object" class="btn-secondary" invisible="not has_results"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
